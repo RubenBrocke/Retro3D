@@ -1,4 +1,5 @@
 #include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
 #include <math.h>
 #include <iostream>
 
@@ -6,7 +7,7 @@ class Player
 {
 private:
     float _move_speed = 0.02;
-    float _rot_speed = 2;
+    float _rot_speed = 0.04;
     int _prev_mouse_x;
 public:
     float x;
@@ -55,11 +56,11 @@ void Player::Update(float time, sf::RenderWindow* window)
     int mouse_x = sf::Mouse::getPosition().x;
     if (mouse_x > 1920/2)
     {
-        rot += _rot_speed;
+        rot += _rot_speed * (mouse_x - 1920 / 2);
     }
-    if (mouse_x < 1920/2)
+    if (mouse_x < 1920/2);
     {
-        rot -= _rot_speed;
+        rot -= _rot_speed * (1920 / 2 - mouse_x);
     }
     sf::Mouse::setPosition(sf::Vector2i(1920/2, 1080/2));
 }

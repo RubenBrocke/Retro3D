@@ -9,6 +9,7 @@ int main(int argc, char *argv[])
 {
     sf::RenderWindow *window = new sf::RenderWindow(sf::VideoMode(RENDER_WIDTH, RENDER_HEIGHT), "test window");
     window->setSize(sf::Vector2u(1920, 1080));
+    window->setMouseCursorVisible(false);
     Renderer renderer = Renderer();
     World w = World(20, 20);
     Player p = Player(10, 10);

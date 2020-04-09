@@ -6,14 +6,14 @@ class Player
 {
 private:
     float _move_speed = 0.02;
-    float _rot_speed = 0.2;
+    float _rot_speed = 2;
     int _prev_mouse_x;
 public:
     float x;
     float y;
     float rot;
     Player(int _x, int _y);
-    void Update(float time);
+    void Update(float time, sf::RenderWindow* window);
 };
 
 Player::Player(int _x, int _y)
@@ -24,7 +24,7 @@ Player::Player(int _x, int _y)
     _prev_mouse_x = sf::Mouse::getPosition().x;
 }
 
-void Player::Update(float time)
+void Player::Update(float time, sf::RenderWindow* window)
 {
     float new_x = x;
     float new_y = y;
@@ -53,14 +53,14 @@ void Player::Update(float time)
     y = new_y;
 
     int mouse_x = sf::Mouse::getPosition().x;
-    if (mouse_x > _prev_mouse_x)
+    if (mouse_x > 1920/2)
     {
-        rot += _rot_speed * (mouse_x - _prev_mouse_x);
+        rot += _rot_speed;
     }
-    if (mouse_x < _prev_mouse_x)
+    if (mouse_x < 1920/2)
     {
-        rot -= _rot_speed * (_prev_mouse_x - mouse_x);
+        rot -= _rot_speed;
     }
-    _prev_mouse_x = mouse_x;
+    sf::Mouse::setPosition(sf::Vector2i(1920/2, 1080/2));
 }
 

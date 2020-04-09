@@ -23,7 +23,8 @@ int main(int argc, char *argv[])
             if (event.type == sf::Event::Closed)
                 window->close();
         }
-        p.Update(0);
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) { window->close(); }
+        p.Update(0, window);
         renderer.Render(window, w, p.x, p.y, p.rot);
         clock.restart();
     }
